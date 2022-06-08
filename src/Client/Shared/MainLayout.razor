@@ -1,0 +1,86 @@
+﻿@inherits LayoutComponentBase
+
+<audio id="notification" src="/media/notification.mp3" />
+<MudThemeProvider Theme="_currentTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+<AuthorizeView>
+    <NotAuthorized>
+        <MudAppBar Elevation="4" Color="Color.Tertiary">
+            <MudAppBarSpacer />
+            <LanguageSelector />
+            <MudTooltip Text="Toggle Dark Mode">
+                <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+            </MudTooltip>
+        </MudAppBar>
+
+        <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">
+            <MudPaper Elevation="25" Class="pa-8" Style="width: 500px;">
+                <CascadingValue Value="hubConnection">
+                    @Body
+                </CascadingValue>
+            </MudPaper>
+        </MudContainer>
+    </NotAuthorized>
+    <Authorized>
+        @(LoadDataAsync())
+        <MudLayout RightToLeft="@_rightToLeft">
+            <MudAppBar Elevation="25" Color="Color.Tertiary">
+                <img src="logo-tr.png" asp-append-version="true" height="60"/>
+                <MudText Typo="Typo.h6" Class="ml-4">The Pas</MudText>
+                <MudToolBar DisableGutters="true">
+                    <MudIconButton Icon="@Icons.Material.Outlined.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" Class="ml-3" />
+                </MudToolBar>
+                <MudAppBarSpacer />
+                <MudHidden Breakpoint="Breakpoint.MdAndUp" Invert="true">
+                    <MudTooltip Text="Toggle Dark Mode">
+                        <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+                    </MudTooltip>
+                    <MudTooltip Text="Fork Repository">
+                        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/adibfar/SouthDakota-PrecisionAgriculture" Target="_blank" />
+                    </MudTooltip>
+                </MudHidden>
+                <MudHidden Breakpoint="Breakpoint.SmAndDown" Invert="true">
+                    <MudMenu Icon="@Icons.Filled.Settings" Color="Color.Inherit" Dense="true" Direction="Direction.Right" OffsetY="true">
+                        <div class="px-2">
+                            <MudTooltip Text="Toggle Dark Mode">
+                                <MudIconButton Icon="@Icons.Material.Filled.Brightness4" Color="Color.Inherit" OnClick="@((e) => DarkMode())" />
+                            </MudTooltip>
+                            <MudTooltip Text="Fork Repository">
+                                <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/adibfar/SouthDakota-PrecisionAgriculture" Target="_blank" />
+                            </MudTooltip>
+                        </div>
+                    </MudMenu>
+                </MudHidden>
+                <MudMenu Direction="_rightToLeft ? Direction.Right : Direction.Left" OffsetX="true" Dense="true" Class="mt-1 ml-4">
+                    <ActivatorContent>
+                        @if (string.IsNullOrEmpty(ImageDataUrl))
+                        {
+                            <MudAvatar Color="Color.Dark">@FirstLetterOfName</MudAvatar>
+                        }
+                        else
+                        {
+                            <MudAvatar Image="@ImageDataUrl" Style="height:40px; width:40px;"> </MudAvatar>
+                        }
+                    </ActivatorContent>
+                    <ChildContent>
+                        <UserCard Class="mt-n2" />
+                        <MudDivider Class="mb-2" />
+                        <MudListItem Text="Account" Href="/account" Icon="@Icons.Material.Outlined.Person" />
+                        <MudListItem Text="Logout" Icon="@Icons.Material.Filled.Logout" OnClick="Logout" />
+                    </ChildContent>
+                </MudMenu>
+            </MudAppBar>
+            <MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+                <NavMenu />
+            </MudDrawer>
+            <MudMainContent>
+                <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+                    <CascadingValue Value="hubConnection">
+                        @Body
+                    </CascadingValue>
+                </MudContainer>
+            </MudMainContent>
+        </MudLayout>
+    </Authorized>
+</AuthorizeView>

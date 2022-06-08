@@ -1,0 +1,97 @@
+﻿@using System.Security.Claims
+
+<MudNavMenu>
+    <MudListSubheader Class="mt-2 mb-n2">General</MudListSubheader>
+    <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Home">Home</MudNavLink>
+    @if (_canViewHangfire)
+    {
+        <MudNavLink Href="/jobs" Target="_blank" Icon="@Icons.Material.Outlined.Work">
+            Hangfire
+        </MudNavLink>
+    }
+    <MudNavLink Href="/swagger/index.html" Target="_blank" Icon="@Icons.Material.Outlined.LiveHelp">
+        Swagger
+    </MudNavLink>
+    <MudListSubheader Class="mt-2 mb-n2">Personal</MudListSubheader>
+    @if (_canViewDashboards)
+    {
+        <MudNavLink Href="/dashboard" Icon="@Icons.Material.Outlined.Dashboard">
+            Dashboard
+        </MudNavLink>
+    }
+    <MudNavLink Href="/account" Icon="@Icons.Material.Outlined.SupervisorAccount">
+        Account
+    </MudNavLink>
+    @if (_canViewAuditTrails)
+    {
+        <MudNavLink Href="/audit-trails" Icon="@Icons.Material.Outlined.Security">
+            Audit Trails
+        </MudNavLink>
+    }
+
+    @if (_canViewUsers || _canViewRoles)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">Administrator</MudListSubheader>
+        @if (_canViewUsers)
+        {
+            <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
+                Users
+            </MudNavLink>
+        }
+        @if (_canViewRoles)
+        {
+            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">Roles</MudNavLink>
+        }
+    }
+    @if (_canViewChat)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">Communication</MudListSubheader>
+        <MudNavLink Href="/chat" Icon="@Icons.Material.Outlined.Chat">
+            Chat
+        </MudNavLink>
+    }
+    @if (_canViewFarms || _canViewZones)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">Farm Management</MudListSubheader>
+        @if (_canViewFarms)
+        {
+            <MudNavLink Href="/management/farms" Icon="@Icons.Material.Outlined.CallToAction">
+                Farms
+            </MudNavLink>
+        }
+        @if (_canViewZones)
+        {
+            <MudNavLink Href="/management/zones" Icon="@Icons.Material.Outlined.CallToAction">
+                Zones
+            </MudNavLink>
+        }
+    }
+</MudNavMenu>
+
+@code {
+    private ClaimsPrincipal _authenticationStateProviderUser;
+
+    private bool _canViewHangfire;
+    private bool _canViewDashboards;
+    private bool _canViewDocuments;
+    private bool _canViewDocumentTypes;
+    private bool _canViewAuditTrails;
+    private bool _canViewRoles;
+    private bool _canViewUsers;
+    private bool _canViewChat;
+    private bool _canViewZones;
+    private bool _canViewFarms;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _authenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+        _canViewHangfire = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Hangfire.View)).Succeeded;
+        _canViewDashboards = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Dashboards.View)).Succeeded;
+        _canViewAuditTrails = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.AuditTrails.View)).Succeeded;
+        _canViewRoles = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Roles.View)).Succeeded;
+        _canViewUsers = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Users.View)).Succeeded;
+        _canViewChat = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Communication.Chat)).Succeeded;
+        _canViewZones = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Zones.View)).Succeeded;
+        _canViewFarms = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Farms.View)).Succeeded;
+    }
+}
