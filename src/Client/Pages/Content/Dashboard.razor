@@ -1,0 +1,59 @@
+﻿@page "/dashboard"
+@attribute [Authorize(Policy = Permissions.Dashboards.View)]
+
+<PageTitle Title="Dashboard" Description="Realtime Updates & Insights with SignalR." />
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudGrid>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.ViewCarousel" Color="Color.Primary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Zones</MudText>
+                    <MudText Typo="Typo.h5">@ZoneCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.PanoramaPhotosphereSelect" Color="Color.Secondary" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Farms</MudText>
+                    <MudText @bind-Value="@FarmCount" Typo="Typo.h5">@FarmCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.Face" Color="Color.Success" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Users</MudText>
+                    <MudText Typo="Typo.h5">@UserCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="3">
+            <MudPaper Elevation="25" Class="d-flex flex-row pt-6 pb-4" Style="height:100px;">
+                <MudIcon Icon="@Icons.Material.Filled.Groups" Color="Color.Warning" Class="mx-4" Style="width:54px; height:54px;"></MudIcon>
+                <div>
+                    <MudText Typo="Typo.subtitle1" Class="mud-text-secondary mb-n1">Registered Roles</MudText>
+                    <MudText Typo="Typo.h5">@RoleCount</MudText>
+                </div>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="8">
+            <MudPaper Elevation="25" Class="pa-4" Style="height:400px;">
+                <MudChart ChartType="ChartType.Bar" ChartSeries="@_dataEnterBarChartSeries" XAxisLabels="@_dataEnterBarChartXAxisLabels.ToArray()" Width="100%" Height="300px"></MudChart>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="4">
+            <MudPaper Elevation="25" Class="pa-4" Style="height:400px;">
+                Charts comming soon ish...
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+}

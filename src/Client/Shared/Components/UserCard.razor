@@ -1,0 +1,19 @@
+﻿@namespace PAS.Client.Shared.Components
+<MudCard Elevation="0" Square="true" Class="@Class">
+    <MudCardHeader>
+        <CardHeaderAvatar>
+            @if (string.IsNullOrEmpty(ImageDataUrl))
+            {
+                <MudAvatar Color="Color.Dark">@FirstLetterOfName</MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Image="@ImageDataUrl" Style="height:42px; width:42px;"> </MudAvatar>
+            }
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            <MudText Typo="Typo.body2">@FirstName @SecondName</MudText>
+            <MudText Typo="Typo.caption">@Email</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+</MudCard>

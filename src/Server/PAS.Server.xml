@@ -1,0 +1,349 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PAS.Server</name>
+    </assembly>
+    <members>
+        <member name="T:PAS.Server.Controllers.BaseApiController`1">
+            <summary>
+            Abstract BaseApi Controller Class
+            </summary>
+        </member>
+        <member name="M:PAS.Server.Controllers.Communication.ChatsController.GetChatHistoryAsync(System.String)">
+            <summary>
+            Get user wise chat history
+            </summary>
+            <param name="contactId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Communication.ChatsController.GetChatUsersAsync">
+            <summary>
+            get available users
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Communication.ChatsController.SaveMessageAsync(PAS.Application.Models.Chat.ChatHistory{PAS.Application.Interfaces.Chat.IChatUser})">
+            <summary>
+            Save Chat Message
+            </summary>
+            <param name="message"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.AccountController.UpdateProfile(PAS.Application.Requests.Identity.UpdateProfileRequest)">
+            <summary>
+            Update Profile
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.AccountController.ChangePassword(PAS.Application.Requests.Identity.ChangePasswordRequest)">
+            <summary>
+            Change Password
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.AccountController.GetProfilePictureAsync(System.String)">
+            <summary>
+            Get Profile picture by Id
+            </summary>
+            <param name="userId"></param>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.AccountController.UpdateProfilePictureAsync(PAS.Application.Requests.Identity.UpdateProfilePictureRequest)">
+            <summary>
+            Update Profile Picture
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleClaimController.GetAll">
+            <summary>
+            Get All Role Claims(e.g. Product Create Permission)
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleClaimController.GetAllByRoleId(System.String)">
+            <summary>
+            Get All Role Claims By Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleClaimController.Post(PAS.Application.Requests.Identity.RoleClaimRequest)">
+            <summary>
+            Add a Role Claim
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleClaimController.Delete(System.Int32)">
+            <summary>
+            Delete a Role Claim
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleController.GetAll">
+            <summary>
+            Get All Roles (basic, admin etc.)
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleController.Post(PAS.Application.Requests.Identity.RoleRequest)">
+            <summary>
+            Add a Role
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleController.Delete(System.String)">
+            <summary>
+            Delete a Role
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleController.GetPermissionsByRoleId(System.String)">
+            <summary>
+            Get Permissions By Role Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.RoleController.Update(PAS.Application.Requests.Identity.PermissionRequest)">
+            <summary>
+            Edit a Role Claim
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.TokenController.Get(PAS.Application.Requests.Identity.TokenRequest)">
+            <summary>
+            Get Token (Email, Password)
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.TokenController.Refresh(PAS.Application.Requests.Identity.RefreshTokenRequest)">
+            <summary>
+            Refresh Token
+            </summary>
+            <param name="model"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.GetAll">
+            <summary>
+            Get User Details
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.GetById(System.String)">
+            <summary>
+            Get User By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.GetRolesAsync(System.String)">
+            <summary>
+            Get User Roles By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.UpdateRolesAsync(PAS.Application.Requests.Identity.UpdateUserRolesRequest)">
+            <summary>
+            Update Roles for User
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.RegisterAsync(PAS.Application.Requests.Identity.RegisterRequest)">
+            <summary>
+            Register a User
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.ConfirmEmailAsync(System.String,System.String)">
+            <summary>
+            Confirm Email
+            </summary>
+            <param name="userId"></param>
+            <param name="code"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.ToggleUserStatusAsync(PAS.Application.Requests.Identity.ToggleUserStatusRequest)">
+            <summary>
+            Toggle User Status (Activate and Deactivate)
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.ForgotPasswordAsync(PAS.Application.Requests.Identity.ForgotPasswordRequest)">
+            <summary>
+            Forgot Password
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.ResetPasswordAsync(PAS.Application.Requests.Identity.ResetPasswordRequest)">
+            <summary>
+            Reset Password
+            </summary>
+            <param name="request"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Identity.UserController.Export(System.String)">
+            <summary>
+            Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.AuditsController.GetUserTrailsAsync">
+            <summary>
+            Get Current User Audit Trails
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.AuditsController.ExportExcel(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Search Audit Trails and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="searchInOldValues"></param>
+            <param name="searchInNewValues"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="T:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4">
+            <summary>
+            Abstract Extended Attributes Controller Class
+            </summary>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAll">
+            <summary>
+            Get All Entity Extended Attributes
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetAllByEntityId(`1)">
+            <summary>
+            Get All Entity Extended Attributes by entity id
+            </summary>
+            <param name="entityId"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.GetById(`0)">
+            <summary>
+            Get Entity Extended Attribute By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Post(PAS.Application.Features.ExtendedAttributes.Commands.AddEdit.AddEditExtendedAttributeCommand{`0,`1,`2,`3})">
+            <summary>
+            Create/Update a Entity Extended Attribute
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Delete(`0)">
+            <summary>
+            Delete a Entity Extended Attribute
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.ExtendedAttributes.Base.ExtendedAttributesController`4.Export(System.String,`1,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Search Entity Extended Attribute and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <param name="entityId"></param>
+            <param name="includeEntity"></param>
+            <param name="onlyCurrentGroup"></param>
+            <param name="currentGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.Utilities.PreferencesController.ChangeLanguageAsync(System.String)">
+            <summary>
+            Change Language Preference
+            </summary>
+            <param name="languageCode"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.DashboardController.GetDataAsync">
+            <summary>
+            Get Dashboard Data
+            </summary>
+            <returns>Status 200 OK </returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.FarmsController.GetAll">
+            <summary>
+            Get All Farms
+            </summary>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.FarmsController.GetById(System.Int32)">
+            <summary>
+            Get a Farm By Id
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 Ok</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.FarmsController.Post(PAS.Application.Features.Farms.Commands.AddEdit.AddEditFarmCommand)">
+            <summary>
+            Create/Update a Farm
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.FarmsController.Delete(System.Int32)">
+            <summary>
+            Delete a Farm
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.FarmsController.Export(System.String)">
+            <summary>
+            Search Farms and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.ZonesController.GetAll(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            Get All Zones
+            </summary>
+            <param name="pageNumber"></param>
+            <param name="pageSize"></param>
+            <param name="searchString"></param>
+            <param name="orderBy"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.ZonesController.Post(PAS.Application.Features.Zones.Commands.AddEdit.AddEditZoneCommand)">
+            <summary>
+            Add/Edit a Zone
+            </summary>
+            <param name="command"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.ZonesController.Delete(System.Int32)">
+            <summary>
+            Delete a Zone
+            </summary>
+            <param name="id"></param>
+            <returns>Status 200 OK response</returns>
+        </member>
+        <member name="M:PAS.Server.Controllers.v1.FarmManagement.ZonesController.Export(System.String)">
+            <summary>
+            Search Zones and Export to Excel
+            </summary>
+            <param name="searchString"></param>
+            <returns>Status 200 OK</returns>
+        </member>
+    </members>
+</doc>
