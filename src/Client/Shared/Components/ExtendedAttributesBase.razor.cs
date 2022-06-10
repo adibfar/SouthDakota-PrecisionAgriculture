@@ -76,7 +76,7 @@ namespace PAS.Client.Shared.Components
             _canViewExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesViewPolicyName)).Succeeded;
             if (!_canViewExtendedAttributes)
             {
-                _snackBar.Add(_localizer["Not Allowed."], Severity.Error);
+                _snackBar.Add("Not Allowed.", Severity.Error);
                 _navigationManager.NavigateTo("/");
             }
             _canEditExtendedAttributes = (await _authorizationService.AuthorizeAsync(_currentUser, ExtendedAttributesEditPolicyName)).Succeeded;
@@ -110,7 +110,7 @@ namespace PAS.Client.Shared.Components
             {
                 GroupedExtendedAttributes.Clear();
                 _model = response.Data;
-                GroupedExtendedAttributes.Add(_localizer["All Groups"], _model);
+                GroupedExtendedAttributes.Add("All Groups", _model);
                 foreach (var extendedAttribute in _model)
                 {
                     if (!string.IsNullOrWhiteSpace(extendedAttribute.Group))
@@ -128,7 +128,7 @@ namespace PAS.Client.Shared.Components
 
                 if (_model != null)
                 {
-                    Description = string.Format(_localizer["Manage {0} {1}'s Extended Attributes"], EntityId, EntityName);
+                    Description = string.Format("Manage {0} {1}'s Extended Attributes", EntityId, EntityName);
                 }
             }
             else
@@ -161,8 +161,7 @@ namespace PAS.Client.Shared.Components
                     MimeType = ApplicationConstants.MimeTypes.OpenXml
                 });
                 _snackBar.Add(string.IsNullOrWhiteSpace(request.SearchString) && !request.IncludeEntity && !request.OnlyCurrentGroup
-                    ? _localizer["Extended Attributes exported"]
-                    : _localizer["Filtered Extended Attributes exported"], Severity.Success);
+                    ? "Extended Attributes exported" : "Filtered Extended Attributes exported", Severity.Success);
             }
             else
             {
@@ -207,7 +206,7 @@ namespace PAS.Client.Shared.Components
                 });
             }
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Medium, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<AddEditExtendedAttributeModal<TId, TEntityId, TEntity, TExtendedAttribute>>(id.Equals(default) ? _localizer["Create"] : _localizer["Edit"], parameters, options);
+            var dialog = _dialogService.Show<AddEditExtendedAttributeModal<TId, TEntityId, TEntity, TExtendedAttribute>>(id.Equals(default) ? "Create" : "Edit", parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
@@ -217,20 +216,20 @@ namespace PAS.Client.Shared.Components
 
         private async Task Delete(TId id)
         {
-            string deleteContent = _localizer["Delete Extended Attribute?"];
+            string deleteContent = "Delete Extended Attribute?";
             var parameters = new DialogParameters
             {
                 {nameof(Dialogs.DeleteConfirmation.ContentText), string.Format(deleteContent, id)}
             };
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, DisableBackdropClick = true };
-            var dialog = _dialogService.Show<Dialogs.DeleteConfirmation>(_localizer["Delete"], parameters, options);
+            var dialog = _dialogService.Show<Dialogs.DeleteConfirmation>("Delete", parameters, options);
             var result = await dialog.Result;
             if (!result.Cancelled)
             {
                 var response = await ExtendedAttributeManager.DeleteAsync(id);
                 if (response.Succeeded)
                 {
-                     await Reset();
+                    await Reset();
                     _snackBar.Add(response.Messages[0], Severity.Success);
                 }
                 else
