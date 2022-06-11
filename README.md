@@ -1,6 +1,8 @@
 # About Precision Agriculture System (The Pas)
 Computer vision models can improve a wide range of farming applications – from monitoring crops and produce to livestock and aquaculture. Developing such applications, however, means working with unstructured, unpredictable, and highly dynamic environments, in which terrain and targeted objects vary and change constantly. Preparing agricultural data also requires expertise, both during analysis and implementation.
 
+![alt text](https://x0a00.simabt.com/screen1.png)
+
 # Project Features
 
 - [x] Mudblazor Component Library
